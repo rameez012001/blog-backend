@@ -8,11 +8,16 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
+app.get("/ping", (req, res) => {
+  res.status(200).send("pong");
+});
+
+
 app.get("/posts", (req, res) => {
   postController.getPosts(req, res);
 });
 
-app.post("/posts", (req, res) => {
+app.post("/postablog", (req, res) => {
   postController.createPost(req, res);
 });
 
