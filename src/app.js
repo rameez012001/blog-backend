@@ -12,7 +12,6 @@ app.get("/ping", (req, res) => {
   res.status(200).send("pong");
 });
 
-
 app.get("/posts", (req, res) => {
   postController.getPosts(req, res);
 });
@@ -21,11 +20,8 @@ app.post("/postablog", (req, res) => {
   postController.createPost(req, res);
 });
 
-
 const PORT = process.env.PORT || 4000;
 
-
-    app.listen(PORT, () => {
-      console.log("Server is running on port", PORT);
-    });
-
+app.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
+});
