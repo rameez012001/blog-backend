@@ -2,9 +2,9 @@ const postService = require('../service/PostService');
 
 class PostController {
     async createPost(req, res) {
-        const postData = req.body;
         try{
-            const newPost = await postService.createPost(postData);
+            const {title, content} = req.body;
+            const newPost = await postService.createPost({title, content});
             res.status(201).json(newPost);
         }
         catch(error){
