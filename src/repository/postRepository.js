@@ -12,6 +12,11 @@ class PostRepository {
         );
         return posts.rows[0];
     }
+
+    async deleteById({ id }) {
+        const posts = await pool.query('DELETE FROM "Posts" WHERE id = $1 RETURNING *',[id]);
+        return posts.rows;
+    }
 }
 
 module.exports = new PostRepository();

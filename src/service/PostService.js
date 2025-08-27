@@ -8,6 +8,10 @@ class PostService {
   async getPosts() {
     return await postRepository.findAll();
   }
+
+  async deletePostById(id){
+    return await postRepository.deleteById(id);
+  }
 }
 
 module.exports = new PostService();
