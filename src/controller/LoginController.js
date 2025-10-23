@@ -1,6 +1,8 @@
-const loginService = require("../service/LoginService");
+import LoginService from "../service/LoginService.js";
 
-class LoginController {
+const loginService = new LoginService();
+
+export default class LoginController {
   async adminLogin(req, res) {
     try {
       const { username, password } = req.body || {};
@@ -41,5 +43,3 @@ class LoginController {
   }
   
 }
-
-module.exports = new LoginController();

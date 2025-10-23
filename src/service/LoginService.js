@@ -1,10 +1,9 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const { JWT_SECRET, ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
 
-const bcrypt = require("bcrypt");
-
-class LoginService {
+export default class LoginService {
   issueAccessWebToken(sub) {
     return jwt.sign({ sub, role: "admin" }, JWT_SECRET, {
       algorithm: "HS256",
@@ -26,4 +25,3 @@ class LoginService {
     })
   }
 }
-module.exports = new LoginService();

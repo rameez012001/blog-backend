@@ -1,6 +1,8 @@
-const postRepository = require("../repository/postRepository")
+import PostRepository from "../repository/PostRepository.js";
 
-class PostService {
+const postRepository = new PostRepository();
+
+export default class PostService {
   async createPost(postData) {
     return await postRepository.create(postData);
   }
@@ -13,5 +15,3 @@ class PostService {
     return await postRepository.deleteById(id);
   }
 }
-
-module.exports = new PostService();

@@ -1,6 +1,8 @@
-const postService = require('../service/PostService');
+import PostService from '../service/PostService.js';
 
-class PostController {
+const postService = new PostService();
+
+export default class PostController {
     async createPost(req, res) {
         try {
             const { title, content } = req.body;
@@ -47,5 +49,3 @@ class PostController {
         }
     }
 }
-
-module.exports = new PostController();

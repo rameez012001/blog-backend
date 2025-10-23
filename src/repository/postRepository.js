@@ -1,6 +1,6 @@
-const pool = require('../database');
+import pool from '../database.js';
 
-class PostRepository {
+export default class PostRepository {
     async findAll() {
         const posts = await pool.query('SELECT * FROM "Posts" ORDER BY date DESC');
         return posts.rows;
@@ -18,5 +18,3 @@ class PostRepository {
         return posts.rows;
     }
 }
-
-module.exports = new PostRepository();

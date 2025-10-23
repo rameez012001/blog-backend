@@ -1,18 +1,22 @@
-const express = require("express");
-const postController = require("./controller/PostController");
-const loginController = require("./controller/LoginController");
+import express from "express";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
-const authBearer = require('./middleware/authToken');
 
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
+import PostController from "./controller/PostController.js";
+import LoginController from "./controller/LoginController.js";
+import authBearer from "./middleware/authToken.js";
 
-const cookieParser = require("cookie-parser");
+const postController = new PostController();
+const loginController = new LoginController();
 
 const {
   ALLOWED_ORIGIN,
   PORT = 10000
 } = process.env;
+
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 100,
@@ -20,9 +24,8 @@ const limiter = rateLimit({
   message: "Hold Your Horses, Man. Don't make too many requests"
 });
 
-
-
 const app = express();
+
 app.use(express.json());
 
 app.use(limiter);
@@ -30,7 +33,7 @@ app.use(helmet());
 
 app.use(cookieParser());
 
-const cors = require("cors");
+
 app.use(cors({ origin: ALLOWED_ORIGIN, credentials: true }));
 app.get("/ping", (req, res) => {
   res.status(200).send("pong");
